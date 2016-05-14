@@ -1,3 +1,31 @@
 <div class="full-height" layout="row" layout-align="center center">
-    <div>Login</div>
+    <md-content flex flex-gt-sm="30" flex-gt-xs="50">
+        <md-toolbar layout-align="center center" class="md-toolbar">
+            <p>
+                WELCOME
+            </p>
+        </md-toolbar>
+        <div layout-padding>
+            <md-input-container class="md-block">
+                <label>Title</label>
+                <input>
+            </md-input-container>
+            <md-input-container class="md-block">
+                <label>Email</label>
+                <input type="email">
+            </md-input-container>
+            <div layout="column">
+                <md-button class="md-raised md-primary">Primary</md-button>
+            </div>
+            <div layout="row" layout-align="center">
+                <span>
+                    Don't have an account? <md-button>Sign Up</md-button>
+                </span>
+            </div>
+            <div layout="row">
+                <md-button class="md-raised md-primary" flex>Facebok</md-button>
+                <md-button class="md-raised md-warn"flex>Google</md-button>
+            </div>
+        </div>
+    </md-content>
 </div>
