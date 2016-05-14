@@ -5,9 +5,11 @@
         .module('app')
         .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = [];
-    function RegisterController() {
-
+    RegisterController.$inject = ['$scope', '$location'];
+    function RegisterController($scope, $location) {
+        $scope.goLogin = function() {
+            $location.path('/login');
+        }
     }
 
 })();

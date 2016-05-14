@@ -3,11 +3,13 @@
 
     angular
         .module('app')
-        .controller('LoginController', RegisterController);
+        .controller('LoginController', LoginController);
 
-    RegisterController.$inject = [];
-    function RegisterController() {
-
+    LoginController.$inject = ['$scope', '$location'];
+    function LoginController($scope, $location) {
+        $scope.goRegister = function(){
+            $location.path('/register');
+        }
     }
 
 })();
