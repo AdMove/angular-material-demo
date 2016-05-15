@@ -31,6 +31,14 @@
                     ns.goLogin();
                 }
             });
+            $scope.user = {
+                photo: $cookies.get('user.photo'),
+                name: $cookies.get('user.name'),
+                email: $cookies.get('user.email')
+            };
+
+            $scope.isOpen = false;
+
 
             $scope.user = {
                 photo: $cookies.get('user.photo'),
@@ -113,6 +121,7 @@
                 console.log($scope.startDate);
                 console.log($scope.endDate);
             };
+
 
             $scope.close = function () {
                 $mdSidenav('right').close()
