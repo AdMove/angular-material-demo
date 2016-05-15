@@ -21,3 +21,7 @@
     position: absolute;
     top: 0;
 }
+
+.user-data {
+    height: 5% !important;
+}

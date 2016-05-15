@@ -4,11 +4,18 @@
         <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
                     md-is-locked-open="$mdMedia('gt-md')">
             <md-toolbar class="md-theme-indigo">
-                <h1 class="md-toolbar-tools">Sidenav Left</h1>
+                <md-list-item class="md-2-line user-data">
+                    <img ng-src="https://lh4.googleusercontent.com/-Pd4Za6rUfHU/AAAAAAAAAAI/AAAAAAAAACw/AWZH0HxlYVU/s96-c/photo.jpg"
+                         class="md-avatar" alt="Mejdsakl"/>
+                    <div class="md-list-item-text">
+                        <h3>My Name</h3>
+                        <p>Secondary text</p>
+                    </div>
+                </md-list-item>
             </md-toolbar>
             <md-content layout-padding ng-controller="LeftCtrl">
                 <md-button ng-click="close()" class="md-primary" hide-gt-md>
-                    Close Sidenav Left
+                    Close
                 </md-button>
                 <p hide-md show-gt-md>
                     This sidenav is locked open on your device. To go back to the default behavior,
@@ -28,12 +35,15 @@
 
                 <md-toolbar>
                     <md-fab-actions class="md-toolbar-tools">
+                        <md-button ng-click="" aria-label="exit" class="md-icon-button">
+                            <md-icon md-svg-src="resources/img/icons/ic_exit_to_app_white.svg"></md-icon>
+                        </md-button>
                         <md-button ng-click="toggleRight()" ng-hide="isOpenRight()"
-                                   aria-label="build" class="md-icon-button">
+                                   aria-label="home" class="md-icon-button">
                             <md-icon md-svg-src="resources/img/icons/ic_build_white.svg"></md-icon>
                         </md-button>
                         <md-button ng-click="toggleLeft()" hide-gt-md
-                                   aria-label="home" class="md-icon-button">
+                                   aria-label="filters" class="md-icon-button">
                             <md-icon md-svg-src="resources/img/icons/ic_home_white.svg"></md-icon>
                         </md-button>
                     </md-fab-actions>
@@ -48,7 +58,7 @@
 
         <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
             <md-toolbar class="md-theme-light">
-                <h1 class="md-toolbar-tools">Sidenav Right</h1>
+                <h1 class="md-toolbar-tools">Filters</h1>
             </md-toolbar>
             <md-content ng-controller="RightCtrl" layout-padding>
                 <form>
@@ -59,7 +69,7 @@
                     </md-input-container>
                 </form>
                 <md-button ng-click="close()" class="md-primary">
-                    Close Sidenav Right
+                    Close
                 </md-button>
             </md-content>
         </md-sidenav>
