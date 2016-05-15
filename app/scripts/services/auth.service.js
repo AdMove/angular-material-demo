@@ -9,7 +9,6 @@
 
         service.login = login;
         service.logout = logout;
-        service.isLoggedIn = isLoggedIn;
 
         return service;
 
@@ -23,10 +22,8 @@
 
             AWS.config.credentials.get(function (err) {
                 if (err) return console.log("Error", err);
-                console.log("Cognito Identity Id", AWS.config.credentials.identityId);
                 $cookies.put('auth_provider', provider);
                 $cookies.put('auth_token', id_token);
-                $cookies.put('aws_token', AWS.config.credentials.identityId);
                 var user = gapi.auth2.getAuthInstance().currentUser.hg.wc;
                 $cookies.put('user.email', user.hg);
                 $cookies.put('user.name', user.wc);
@@ -39,20 +36,13 @@
 
         function logout() {
             if ($cookies.get('auth_provider') === 'accounts.google.com') {
-                gapi.auth2.getAuthInstance().signOut().then(function () {
-                    $cookies.remove('authProvider');
-                    $rootScope.$apply(ns.goLogin);
-                });
+                $cookies.remove('auth_provider');
+                $cookies.remove('auth_token');
+                $cookies.remove('user.email');
+                $cookies.remove('user.name');
+                $cookies.remove('user.photo');
+                ns.goLogin();
             }
-        }
-
-        function isLoggedIn(){
-            // var provider = $cookies.get('auth_provider');
-            // var token = $cookies.get('auth_token');
-            // if (provider && token && provider === 'accounts.google.com'){
-            //     return gapi.auth2.getAuthInstance().isSignedIn.hg;
-            // }
-            return false;
         }
 
     }
