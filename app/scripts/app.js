@@ -6,6 +6,20 @@
         .directive('mapCanvas', mapCanvasDirective)
         .config(config);
 
+    function mapCanvasDirective() {
+        return {
+            restrict: 'E',
+            template: '<div></div>',
+            replace: true,
+            link: function (scope, element) {
+                new google.maps.Map(element[0], {
+                    zoom: 13,
+                    center: new google.maps.LatLng(41.7166, 44.7833)
+                });
+            }
+        };
+    }
+
     config.$inject = ['$routeProvider', '$locationProvider'];
     function config($routeProvider, $locationProvider) {
         $routeProvider
@@ -28,21 +42,6 @@
             })
 
             .otherwise({redirectTo: '/login'});
-    }
-
-    function mapCanvasDirective() {
-        return {
-            restrict: 'E',
-            template: '<div></div>',
-            replace: true,
-            link: function (scope, element) {
-                var mapOptions = {
-                    zoom: 8,
-                    center: new google.maps.LatLng(-34.397, 150.644)
-                };
-                new google.maps.Map(element[0], mapOptions);
-            }
-        };
     }
 
 })();
