@@ -10,7 +10,7 @@
         var service = {};
 
         service.goLogin = function () {
-            $location.path('/login');
+            $location.path('/');
         };
 
         service.goRegister = function () {
@@ -18,8 +18,8 @@
         };
 
         service.goHome = function () {
-            $location.path('/');
-        }
+            $location.path('/home');
+        };
 
         return service;
     }
