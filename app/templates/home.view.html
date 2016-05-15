@@ -1,8 +1,7 @@
 <div layout="column" layout="column" style="height: 100%;" ng-cloak>
     <section layout="row" flex>
 
-        <md-sidenav ng-controller="LeftCtrl" md-swipe-left="close()"
-                    class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
+        <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
                     md-is-locked-open="$mdMedia('gt-md')">
             <md-toolbar class="md-theme-indigo">
                 <md-list-item class="md-2-line user-data">
@@ -14,7 +13,7 @@
                     </div>
                 </md-list-item>
             </md-toolbar>
-            <md-content layout-padding>
+            <md-content ng-controller="LeftCtrl" md-swipe-left="close()" layout-padding>
                 <md-list ng-cloak="">
                     <md-list-item class="list-item" ng-click="">
                         <md-icon md-svg-src="resources/img/icons/ic_supervisor_account_black.svg"></md-icon>
@@ -60,12 +59,11 @@
             <div flex></div>
         </md-content>
 
-        <md-sidenav ng-controller="RightCtrl" md-swipe-right="close()"
-                    class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+        <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
             <md-toolbar class="md-theme-light">
                 <h1 class="md-toolbar-tools">Filters</h1>
             </md-toolbar>
-            <md-content layout-padding>
+            <md-content ng-controller="RightCtrl" md-swipe-right="close()" layout-padding>
                 <form>
                     <md-input-container>
                         <label for="testInput">Test input</label>
