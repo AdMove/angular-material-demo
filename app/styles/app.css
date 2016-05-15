@@ -2,15 +2,22 @@
     height: 100%;
 }
 
-.layout-padding{
+.layout-padding {
     padding: 2%;
 }
 
-.md-toolbar p{
+.md-toolbar p {
     padding: 7%;
     font-size: 1.5em;
 }
 
-.md-warn{
+.md-warn {
     background-color: red !important;
+}
+
+.map {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
 }

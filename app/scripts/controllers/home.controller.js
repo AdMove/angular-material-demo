@@ -5,20 +5,8 @@
         .module('app')
         .controller('HomeController', HomeController)
         .controller('LeftCtrl', LeftCtrl)
-        .controller('RightCtrl', RightCtrl)
-        .directive('mapCanvas', function () {
-            return {
-                restrict: 'E',
-                link: function (scope, element) {
-                    var mapOptions = {
-                        zoom: 8,
-                        center: new google.maps.LatLng(-34.397, 150.644)
-                    };
-                    new google.maps.Map(element[0], mapOptions);
-                }
-            };
-        });
-    
+        .controller('RightCtrl', RightCtrl);
+
     HomeController.$inject = ['$scope', '$timeout', '$mdSidenav', '$log'];
     function HomeController($scope, $timeout, $mdSidenav, $log) {
         $scope.isOpen = false;
@@ -26,7 +14,7 @@
         $scope.navigationBar = {
             isOpen: false,
             count: 0,
-            selectedDirection: 'right'
+            selectedDirection: 'left'
         };
 
         $scope.toggleLeft = buildDelayedToggler('left');
@@ -96,6 +84,5 @@
                 });
         };
     }
-
 
 })();
