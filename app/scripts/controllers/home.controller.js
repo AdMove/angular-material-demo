@@ -33,6 +33,14 @@
         });
 
 
+    HomeController.$inject = ['$scope', '$cookies', '$timeout', '$mdSidenav', '$log', 'AuthService'];
+    function HomeController($scope, $cookies, $timeout, $mdSidenav, $log, as) {
+        $scope.user = {
+            photo: $cookies.get('user.photo'),
+            name: $cookies.get('user.name'),
+            email: $cookies.get('user.email')
+        };
+
         $scope.isOpen = false;
 
         $scope.logout = as.logout;
@@ -103,7 +111,7 @@
 
     RightCtrl.$inject = ['$scope', '$timeout', '$mdSidenav', '$log'];
     function RightCtrl($scope, $timeout, $mdSidenav, $log) {
-        
+
         $scope.filter = function () {
             console.log($scope.startDate);
             console.log($scope.endDate);
