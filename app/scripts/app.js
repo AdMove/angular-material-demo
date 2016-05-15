@@ -37,7 +37,7 @@
                     // Because path is an MVCArray, we can simply append a new coordinate
                     // and it will automatically appear.
                     path.push(event.latLng);
-                    
+
                 }
             }
         };

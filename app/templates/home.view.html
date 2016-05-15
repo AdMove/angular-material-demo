@@ -5,8 +5,8 @@
                     md-is-locked-open="$mdMedia('gt-md')">
             <md-toolbar class="md-theme-indigo">
                 <md-list-item class="md-2-line user-data">
-                    <img ng-src="{{user.photo}}"
-                         class="md-avatar" alt="Mejdsakl"/>
+                    <img ng-src="{{user.photo || 'resources/img/avatar.png'}}"
+                         class="md-avatar"/>
                     <div class="md-list-item-text">
                         <h3>{{user.name}}</h3>
                         <p>{{user.email}}</p>
