@@ -5,12 +5,29 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$scope', 'NavigationService', 'AuthService'];
-    function LoginController($scope, ns, as) {
+    LoginController.$inject = ['$scope', '$cookies', 'NavigationService', 'AuthService'];
+    function LoginController($scope, $cookies, ns, as) {
         $scope.goRegister = ns.goRegister;
 
-        $scope.$on('$viewContentLoaded', function(){
+        $scope.$on('$viewContentLoaded', function () {
             console.log('loaded view');
+            var provider = $cookies.get('auth_provider');
+            var token = $cookies.get('auth_token');
+            if (provider && token) {
+                var logins = {};
+                logins[provider] = token;
+                AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                    IdentityPoolId: 'us-east-1:dc8ac281-9b58-4846-ad05-862c2f5c59d8',
+                    Logins: logins
+                });
+                AWS.config.credentials.get(function (err) {
+                    if (err) {
+                        return console.log("Error", err);
+                    }
+                    ns.goHome();
+                });
+            }
+
             // if (as.isLoggedIn()){
             //     ns.goHome();
             // }
