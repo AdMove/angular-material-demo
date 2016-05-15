@@ -14,13 +14,19 @@
                 </md-list-item>
             </md-toolbar>
             <md-content layout-padding ng-controller="LeftCtrl">
+                <md-list ng-cloak="">
+                    <md-list-item class="list-item" ng-click="">
+                        <md-icon md-svg-src="resources/img/icons/ic_settings_black.svg"></md-icon>
+                        <p>Data Usage</p>
+                    </md-list-item>
+                    <md-list-item class="list-item" ng-click="">
+                        <md-icon md-svg-src="resources/img/icons/ic_settings_black.svg"></md-icon>
+                        <p>Data Usage</p>
+                    </md-list-item>
+                </md-list>
                 <md-button ng-click="close()" class="md-primary" hide-gt-md>
                     Close
                 </md-button>
-                <p hide-md show-gt-md>
-                    This sidenav is locked open on your device. To go back to the default behavior,
-                    narrow your display.
-                </p>
             </md-content>
         </md-sidenav>
 
@@ -50,7 +56,7 @@
                 </md-toolbar>
             </md-fab-toolbar>
 
-            <div layout="column" layout-align="top center">
+            <div layout="row" layout-align="top center">
                 <map-canvas class="map" id="map"></map-canvas>
             </div>
             <div flex></div>
@@ -67,7 +73,12 @@
                         <input type="text" id="testInput"
                                ng-model="data" md-autofocus>
                     </md-input-container>
+                    <md-datepicker ng-model="startDate" md-placeholder="Enter start date"></md-datepicker>
+                    <md-datepicker ng-model="endDate" md-placeholder="Enter end date"></md-datepicker>
                 </form>
+                <md-button ng-click="filter()" class="md-primary">
+                    Filter
+                </md-button>
                 <md-button ng-click="close()" class="md-primary">
                     Close
                 </md-button>

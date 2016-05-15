@@ -77,6 +77,12 @@
 
     RightCtrl.$inject = ['$scope', '$timeout', '$mdSidenav', '$log'];
     function RightCtrl($scope, $timeout, $mdSidenav, $log) {
+        
+        $scope.filter = function () {
+            console.log($scope.startDate);
+            console.log($scope.endDate);
+        };
+
         $scope.close = function () {
             $mdSidenav('right').close()
                 .then(function () {

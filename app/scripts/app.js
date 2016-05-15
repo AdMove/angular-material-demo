@@ -12,10 +12,33 @@
             template: '<div></div>',
             replace: true,
             link: function (scope, element) {
-                new google.maps.Map(element[0], {
+                var poly;
+                var map;
+
+                map = new google.maps.Map(element[0], {
                     zoom: 13,
                     center: new google.maps.LatLng(41.7166, 44.7833)
                 });
+
+                poly = new google.maps.Polyline({
+                    strokeColor: '#000000',
+                    strokeOpacity: 1.0,
+                    strokeWeight: 3
+                });
+                poly.setMap(map);
+
+                // Add a listener for the click event
+                map.addListener('click', addLatLng);
+
+                // Handles click events on a map, and adds a new point to the Polyline.
+                function addLatLng(event) {
+                    var path = poly.getPath();
+
+                    // Because path is an MVCArray, we can simply append a new coordinate
+                    // and it will automatically appear.
+                    path.push(event.latLng);
+                    
+                }
             }
         };
     }
