@@ -7,9 +7,11 @@
         .controller('LeftCtrl', LeftCtrl)
         .controller('RightCtrl', RightCtrl);
 
-    HomeController.$inject = ['$scope', '$timeout', '$mdSidenav', '$log'];
-    function HomeController($scope, $timeout, $mdSidenav, $log) {
+    HomeController.$inject = ['$scope', '$timeout', '$mdSidenav', '$log', 'AuthService'];
+    function HomeController($scope, $timeout, $mdSidenav, $log, as) {
         $scope.isOpen = false;
+
+        $scope.logout = as.logout;
 
         $scope.navigationBar = {
             isOpen: false,
