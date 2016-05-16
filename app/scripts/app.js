@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('app', ['ngMaterial', 'ngMessages', 'ngRoute', 'ngCookies', 'directive.g+signin'])
+        .module('app', ['ngMaterial', 'ngMessages', 'ngRoute', 'ngCookies', 'directive.gsignin'])
         .directive('mapCanvas', mapCanvasDirective)
         .config(config);
 

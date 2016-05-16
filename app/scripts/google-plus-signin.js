@@ -15,7 +15,7 @@
  *    rendered into the directive root element (requires inclusion of supporting css)
  */
 
-angular.module('directive.g+signin', []).directive('googlePlusSignin', ['$window', '$rootScope', function ($window, $rootScope) {
+angular.module('directive.gsignin', []).directive('googlePlusSignin', ['$window', '$rootScope', function ($window, $rootScope) {
     var ending = /\.apps\.googleusercontent\.com$/;
 
     return {
