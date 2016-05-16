@@ -43,6 +43,7 @@
         };
     }
 
+    config.$inject = ['$routeProvider', '$locationProvider'];
     function config($routeProvider, $locationProvider) {
         $routeProvider
             .when('/home', {
@@ -65,6 +66,5 @@
 
             .otherwise({redirectTo: '/login'});
     }
-    config.$inject = ['$routeProvider', '$locationProvider'];
 
 })();
