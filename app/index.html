@@ -1,22 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Angular Material style sheet -->
-    <link rel="stylesheet"
-          href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
-    <!-- Custom style sheets -->
-    <link rel="stylesheet" href="styles/app.css">
-    <!-- Google Maps Library -->
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.41.min.js"></script>
-    <script>
-        AWS.config.region = 'us-east-1';
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxYIarCZIq4u6WvBgMm-f96Iuj4ErM5fU"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Angular Material style sheet -->
+	<link rel="stylesheet"
+		  href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+	<!-- Custom style sheets -->
+	<link rel="stylesheet" href="styles/app.css">
+	<!-- Google Maps Library -->
+	<script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.41.min.js"></script>
+	<script>
+		AWS.config.region = 'us-east-1';
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxYIarCZIq4u6WvBgMm-f96Iuj4ErM5fU"></script>
 </head>
 <body ng-app="app" ng-cloak>
 
-<div ng-view></div>
+<div ng-view style="height: 100%;"></div>
 
 <!-- Angular Material requires Angular.js Libraries -->
 <script src="//code.angularjs.org/1.5.5/angular.js"></script>
