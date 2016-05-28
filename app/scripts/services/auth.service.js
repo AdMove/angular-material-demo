@@ -12,7 +12,7 @@
 
         return service;
 
-        function login(provider, id_token) {
+        function login(provider, id_token, getUser) {
             var logins = {};
             logins[provider] = id_token;
             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
@@ -24,25 +24,32 @@
                 if (err) return console.log("Error", err);
                 $cookies.put('auth_provider', provider);
                 $cookies.put('auth_token', id_token);
-                var user = gapi.auth2.getAuthInstance().currentUser.hg.wc;
-                $cookies.put('user.email', user.hg);
-                $cookies.put('user.name', user.wc);
-                $cookies.put('user.photo', user.Ph);
-                $rootScope.$apply(function () {
-                    ns.goHome();
+                getUser(function(user){
+                    $cookies.put('user.email', user.email);
+                    $cookies.put('user.name', user.name);
+                    $cookies.put('user.photo', user.picture);
+                    console.log(user);
+                    $rootScope.$apply(function () {
+                        ns.goHome();
+                    });
                 });
+                // var user = gapi.auth2.getAuthInstance().currentUser.hg.wc;
+                // $cookies.put('user.email', user.hg);
+                // $cookies.put('user.name', user.wc);
+                // $cookies.put('user.photo', user.Ph);
+                // $rootScope.$apply(function () {
+                //     ns.goHome();
+                // });
             });
         }
 
         function logout() {
-            if ($cookies.get('auth_provider') === 'accounts.google.com') {
-                $cookies.remove('auth_provider');
-                $cookies.remove('auth_token');
-                $cookies.remove('user.email');
-                $cookies.remove('user.name');
-                $cookies.remove('user.photo');
-                ns.goLogin();
-            }
+            $cookies.remove('auth_provider');
+            $cookies.remove('auth_token');
+            $cookies.remove('user.email');
+            $cookies.remove('user.name');
+            $cookies.remove('user.photo');
+            ns.goLogin();
         }
 
     }

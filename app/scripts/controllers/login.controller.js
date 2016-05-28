@@ -9,6 +9,18 @@
     function LoginController($scope, $cookies, ns, as) {
         $scope.goRegister = ns.goRegister;
 
+        $scope.fbLogin = function () {
+            FB.login(function (response) {
+                if (response.status === 'connected') {
+                    as.login('graph.facebook.com', response.authResponse.accessToken, function (callback) {
+                        FB.api('/me', function (data) {
+                            callback({email: data.email, name: data.name, picture: data.picture.data.url});
+                        }, {fields: 'name,email,picture'});
+                    });
+                }
+            }, {scope: 'public_profile,email'});
+        };
+
         $scope.$on('$viewContentLoaded', function () {
             var provider = $cookies.get('auth_provider');
             var token = $cookies.get('auth_token');
@@ -32,9 +44,11 @@
 
         $scope.$on('event:google-plus-signin-success', function (event, authResult) {
             var id_token = authResult.hg.id_token;
-            as.login('accounts.google.com', id_token);
+            as.login('accounts.google.com', id_token, function (callback) {
+                var user = gapi.auth2.getAuthInstance().currentUser.hg.wc;
+                callback({email: user.hg, name: user.wc, picture: user.Ph});
+            });
         });
-
     }
 
 })();

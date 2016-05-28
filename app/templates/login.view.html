@@ -23,7 +23,9 @@
                 </span>
             </div>
             <div layout="row">
-                <md-button class="md-raised md-primary" flex="50">Facebok</md-button>
+                <div flex="50" layout="column">
+                    <md-button class="md-raised md-primary" ng-click="fbLogin()">Facebok</md-button>
+                </div>
 
                 <google-plus-signin clientid="540992315724-94li2euu9qmiksk4s6fhvs3ctno3svn7.apps.googleusercontent.com"
                                     autorender="false" customtargetid="google-signin" flex="50" layout="column">
