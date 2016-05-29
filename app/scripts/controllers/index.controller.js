@@ -9,9 +9,11 @@
     function IndexController($rootScope, $scope) {
         $scope.loaded = false;
 
-        $rootScope.$on('_content-loaded', function(){
+        $rootScope.$on('_content-loaded', function () {
             console.log('content-loaded');
-            $scope.loaded = true;
+            $scope.$apply(function () {
+                $scope.loaded = true;
+            });
         });
     }
 })();
