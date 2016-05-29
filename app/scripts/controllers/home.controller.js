@@ -31,7 +31,9 @@
                 });
             } else {
                 ns.goLogin();
-                $scope.$emit('_content-loaded');
+                $timeout(function () {
+                    $scope.$emit('_content-loaded');
+                });
             }
         });
         $scope.user = {

@@ -5,8 +5,8 @@
         .module('app')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['$scope', '$cookies', 'NavigationService', 'AuthService'];
-    function LoginController($scope, $cookies, ns, as) {
+    LoginController.$inject = ['$scope', '$cookies', 'NavigationService', 'AuthService', '$timeout'];
+    function LoginController($scope, $cookies, ns, as, $timeout) {
         $scope.goRegister = ns.goRegister;
 
         $scope.fbLogin = function () {
@@ -43,7 +43,9 @@
                     });
                 });
             } else {
-                $scope.$emit('_content-loaded');
+                $timeout(function () {
+                    $scope.$emit('_content-loaded');
+                });
             }
         });
 

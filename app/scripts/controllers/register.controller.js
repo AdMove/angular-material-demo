@@ -5,8 +5,8 @@
         .module('app')
         .controller('RegisterController', RegisterController);
 
-    RegisterController.$inject = ['$scope', '$cookies', 'NavigationService'];
-    function RegisterController($scope, $cookies, ns) {
+    RegisterController.$inject = ['$scope', '$cookies', 'NavigationService','$timeout'];
+    function RegisterController($scope, $cookies, ns, $timeout) {
         $scope.goLogin = ns.goLogin;
 
         $scope.$on('$viewContentLoaded', function () {
@@ -30,7 +30,9 @@
                     });
                 });
             }else{
-                $scope.$emit('_content-loaded');
+                $timeout(function () {
+                    $scope.$emit('_content-loaded');
+                });
             }
         });
     }
