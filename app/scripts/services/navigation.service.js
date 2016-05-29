@@ -10,15 +10,15 @@
         var service = {};
 
         service.goLogin = function () {
-            $location.path('/');
+            $location.path('/').replace();
         };
 
         service.goRegister = function () {
-            $location.path('/register');
+            $location.path('/register').replace();
         };
 
         service.goHome = function () {
-            $location.path('/home');
+            $location.path('/home').replace();
         };
 
         return service;
