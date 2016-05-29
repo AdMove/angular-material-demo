@@ -29,3 +29,29 @@
 .list-item {
     height: 5% !important;
 }
+
+md-progress-circular path{
+    stroke-width: 5px !important;
+}
+
+md-progress-circular{
+    position: absolute;
+}
+
+md-progress-circular.reverse {
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
+
+md-progress-circular.stroke-blue path{
+    stroke: blue;
+}
+md-progress-circular.stroke-orange path{
+    stroke: orange;
+}
+md-progress-circular.stroke-yellow path{
+    stroke: yellow;
+}

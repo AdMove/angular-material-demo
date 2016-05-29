@@ -21,12 +21,16 @@
                 });
                 AWS.config.credentials.get(function (err) {
                     if (err) {
+                        $Scope.$emit('_content-loaded');
                         return console.log("Error", err);
                     }
                     $scope.$apply(function () {
                         ns.goHome();
+                        $Scope.$emit('_content-loaded');
                     });
                 });
+            }else{
+                $Scope.$emit('_content-loaded');
             }
         });
     }

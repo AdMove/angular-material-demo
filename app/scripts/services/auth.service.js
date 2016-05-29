@@ -33,13 +33,6 @@
                         ns.goHome();
                     });
                 });
-                // var user = gapi.auth2.getAuthInstance().currentUser.hg.wc;
-                // $cookies.put('user.email', user.hg);
-                // $cookies.put('user.name', user.wc);
-                // $cookies.put('user.photo', user.Ph);
-                // $rootScope.$apply(function () {
-                //     ns.goHome();
-                // });
             });
         }
 
