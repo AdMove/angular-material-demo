@@ -34,12 +34,12 @@
                 AWS.config.credentials.get(function (err) {
                     console.log('resp: ' + err);
                     if (err) {
-                        $Scope.$emit('_content-loaded');
+                        $scope.$emit('_content-loaded');
                         return console.log("Error", err);
                     }
                     $scope.$apply(function () {
                         ns.goHome();
-                        $Scope.$emit('_content-loaded');
+                        $scope.$emit('_content-loaded');
                     });
                 });
             } else {

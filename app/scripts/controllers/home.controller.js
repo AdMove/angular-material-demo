@@ -23,15 +23,15 @@
                     if (err) {
                         $scope.$apply(function () {
                             ns.goLogin();
-                            $Scope.$emit('_content-loaded');
+                            $scope.$emit('_content-loaded');
                         });
                         return console.log("Error", err);
                     }
-                    $Scope.$emit('_content-loaded');
+                    $scope.$emit('_content-loaded');
                 });
             } else {
                 ns.goLogin();
-                $Scope.$emit('_content-loaded');
+                $scope.$emit('_content-loaded');
             }
         });
         $scope.user = {
