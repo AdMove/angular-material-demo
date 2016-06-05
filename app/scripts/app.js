@@ -19,8 +19,8 @@
         };
     }
 
-    config.$inject = ['$routeProvider', '$locationProvider'];
-    function config($routeProvider, $locationProvider) {
+    config.$inject = ['$routeProvider', '$mdDateLocaleProvider'];
+    function config($routeProvider, $mdDateLocaleProvider) {
         $routeProvider
             .when('/home', {
                 controller: 'HomeController',
@@ -41,6 +41,14 @@
             })
 
             .otherwise({redirectTo: '/login'});
+
+        $mdDateLocaleProvider.formatDate = function(date) {
+            if (date){
+                return date.toDateString().substr(4);
+            }else{
+                return 'Choose Date';
+            }
+        };
     }
 
     run.$inject = ['$window'];

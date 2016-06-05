@@ -5,22 +5,22 @@
         .module('app')
         .factory('Dynamo', Dynamo);
 
-    Dynamo.$inject = [];
-    function Dynamo() {
+    Dynamo.$inject = ['$q'];
+    function Dynamo($q) {
         var free_users_table = 'admove-mobilehub-297572719-FreeUsers';
         var locations_table = 'admove-mobilehub-297572719-Locations';
         var dynamodb;
 
         var service = {};
 
-        service.getFreeUsers = function (callback) {
+        service.getFreeUsers = function () {
             if (!dynamodb) {
                 dynamodb = new AWS.DynamoDB();
             }
-            callWithParams({TableName: free_users_table}, callback, 'scan');
+            return callWithParams({TableName: free_users_table}, 'scan');
         };
 
-        service.getLocationsOfUser = function (userId, callback) {
+        service.getLocationsOfUser = function (userId) {
             if (!dynamodb) {
                 dynamodb = new AWS.DynamoDB();
             }
@@ -31,10 +31,10 @@
                     ":uid": {S: userId}
                 }
             };
-            callWithParams(params, callback);
+            return callWithParams(params);
         };
 
-        service.getFilteredLocationsOfUser = function (userId, startDate, endDate, callback) {
+        service.getFilteredLocationsOfUser = function (userId, startDate, endDate) {
             if (!dynamodb) {
                 dynamodb = new AWS.DynamoDB();
             }
@@ -48,18 +48,21 @@
                     ':end': {S: endDate}
                 }
             };
-            callWithParams(params, callback);
+            return callWithParams(params);
         };
 
         return service;
 
-        function callWithParams(params, callback, fun) {
+        function callWithParams(params, fun) {
+            var deferred = $q.defer();
             dynamodb[fun || 'query'](params, function (e, data) {
                 if (e) {
                     console.log(e);
+                    deferred.reject(e);
                 }
-                callback(data);
+                deferred.resolve(data);
             });
+            return deferred.promise;
         }
     }
 })();

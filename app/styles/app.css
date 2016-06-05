@@ -30,6 +30,10 @@
     height: 5% !important;
 }
 
+.list-item.active{
+    background-color: gray;
+}
+
 md-progress-circular path{
     stroke-width: 5px !important;
 }

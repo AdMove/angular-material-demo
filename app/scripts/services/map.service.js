@@ -5,10 +5,10 @@
         .module('app')
         .factory('MapService', MapService);
 
-    MapService.$inject = ['Dynamo'];
-    function MapService(dynamo) {
+    MapService.$inject = ['Dynamo', '$q'];
+    function MapService(dynamo, $q) {
         var map, poly, roads = [];
-
+        var filter, currentUsers;
         var service = {};
 
         service.initMap = function (elem) {
@@ -47,6 +47,7 @@
             });
             p.setMap(map);
             roads.push(p);
+            return p;
         };
 
         service.clearRoads = function () {
@@ -57,45 +58,39 @@
         };
 
         service.showFreeUsers = function () {
+            var deferred = $q.defer();
+            currentUsers = 'freeUsers';
             service.clearRoads();
-            dynamo.getFreeUsers(function (data) {
-                if (data) {
+            dynamo.getFreeUsers()
+                .then(function (data) {
                     angular.forEach(data.Items, function (item) {
                         var color = getRandomColor();
-                        dynamo.getLocationsOfUser(item.userId.S, function (data) {
-                            if (data) {
+                        var promise;
+                        if (filter){
+                            promise = dynamo.getFilteredLocationsOfUser(item.userId.S, filter.startDate, filter.endDate);
+                        }else{
+                            promise = dynamo.getLocationsOfUser(item.userId.S);
+                        }
+                        promise
+                            .then(function (data) {
                                 var roads = splitRoad(data.Items);
                                 angular.forEach(roads, function (road) {
                                     service.placeRoad(road.map(function (item) {
                                         return new google.maps.LatLng(item.latitude.N, item.longitude.N);
                                     }), color);
                                 });
-                            }
-                        });
+                                deferred.resolve();
+                            });
                     });
-                }
-            });
+                });
+            return deferred.promise;
         };
 
-        service.showFilteredUsers = function (start, end) {
-            service.clearRoads();
-            dynamo.getFreeUsers(function (data) {
-                if (data) {
-                    angular.forEach(data.Items, function (item) {
-                        var color = getRandomColor();
-                        dynamo.getFilteredLocationsOfUser(item.userId.S, start, end, function (data) {
-                            if (data) {
-                                var roads = splitRoad(data.Items);
-                                angular.forEach(roads, function (road) {
-                                    service.placeRoad(road.map(function (item) {
-                                        return new google.maps.LatLng(item.latitude.N, item.longitude.N);
-                                    }), color);
-                                });
-                            }
-                        });
-                    });
-                }
-            });
+        service.updateFilter = function(f){
+            filter = f;
+            if (currentUsers === 'freeUsers'){
+                return service.showFreeUsers();
+            }
         };
 
         return service;

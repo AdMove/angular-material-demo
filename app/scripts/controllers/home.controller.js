@@ -42,7 +42,13 @@
         });
 
         $scope.showFreeUsers = function () {
+            $scope.selected = 'freeUsers';
             ms.showFreeUsers();
+        };
+
+        $scope.showMyUsers = function () {
+            $scope.selected = 'myUsers';
+            alert('This service is not implemented yet');
         };
 
         $scope.user = {
@@ -133,16 +139,22 @@
     function RightCtrl($scope, $timeout, $mdSidenav, $log, ms) {
 
         $scope.filter = function () {
+            console.log($scope.startDate);
             var startDate = new Date($scope.startDate || '2000/01/01');
             var endDate = new Date($scope.endDate || '9999/01/01');
 
             // there is javascript bug and dates need to set (date + 1)
-            startDate.setDate(startDate.getDate()+1);
+            startDate.setDate(startDate.getDate() + 1);
             endDate.setDate(endDate.getDate() + 2);                             // for inclusive end date
 
             var s = startDate.toISOString().substr(0, 10).replace(/-/g, '');
             var e = endDate.toISOString().substr(0, 10).replace(/-/g, '');
-            ms.showFilteredUsers(s, e);
+            ms.updateFilter({
+                startDate: s,
+                endDate: e
+            }).then(function(){
+                $scope.close();
+            });
         };
 
 
