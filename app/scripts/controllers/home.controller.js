@@ -7,8 +7,8 @@
         .controller('LeftCtrl', LeftCtrl)
         .controller('RightCtrl', RightCtrl);
 
-    HomeController.$inject = ['$scope', '$timeout', '$mdSidenav', '$log', '$cookies', 'AuthService', 'NavigationService'];
-    function HomeController($scope, $timeout, $mdSidenav, $log, $cookies, as, ns) {
+    HomeController.$inject = ['$scope', '$timeout', '$mdSidenav', '$log', '$cookies', 'AuthService', 'NavigationService', 'MapService'];
+    function HomeController($scope, $timeout, $mdSidenav, $log, $cookies, as, ns, ms) {
         $scope.$on('$viewContentLoaded', function () {
             var provider = $cookies.get('auth_provider');
             var token = $cookies.get('auth_token');
@@ -36,6 +36,15 @@
                 });
             }
         });
+
+        $scope.$on('_content-loaded', function () {
+            $scope.showFreeUsers();
+        });
+
+        $scope.showFreeUsers = function () {
+            ms.showFreeUsers();
+        };
+
         $scope.user = {
             photo: $cookies.get('user.photo'),
             name: $cookies.get('user.name'),
@@ -66,6 +75,7 @@
         $scope.isOpenRight = function () {
             return $mdSidenav('right').isOpen();
         };
+
 
         /**
          * Supplies a function that will continue to operate until the
@@ -119,12 +129,20 @@
         };
     }
 
-    RightCtrl.$inject = ['$scope', '$timeout', '$mdSidenav', '$log'];
-    function RightCtrl($scope, $timeout, $mdSidenav, $log) {
+    RightCtrl.$inject = ['$scope', '$timeout', '$mdSidenav', '$log', 'MapService'];
+    function RightCtrl($scope, $timeout, $mdSidenav, $log, ms) {
 
         $scope.filter = function () {
-            console.log($scope.startDate);
-            console.log($scope.endDate);
+            var startDate = new Date($scope.startDate || '2000/01/01');
+            var endDate = new Date($scope.endDate || '9999/01/01');
+
+            // there is javascript bug and dates need to set (date + 1)
+            startDate.setDate(startDate.getDate()+1);
+            endDate.setDate(endDate.getDate() + 2);                             // for inclusive end date
+
+            var s = startDate.toISOString().substr(0, 10).replace(/-/g, '');
+            var e = endDate.toISOString().substr(0, 10).replace(/-/g, '');
+            ms.showFilteredUsers(s, e);
         };
 
 
@@ -135,5 +153,4 @@
                 });
         };
     }
-
 })();
