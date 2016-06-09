@@ -13,21 +13,21 @@
                     </div>
                 </md-list-item>
             </md-toolbar>
-            <md-content ng-controller="LeftCtrl" md-swipe-left="close()" layout-padding>
+            <md-content ng-controller="LeftCtrl" md-swipe-left="close()">
                 <md-list ng-cloak="">
-                    <md-list-item class="list-item" ng-click="showFreeUsers()" ng-class="selected === 'freeUsers' ? 'active' : false">
+                    <md-list-item class="list-item advertiser-option" ng-click="showFreeUsers()" ng-class="selected === 'freeUsers' ? 'active' : false">
                         <md-icon md-svg-src="resources/img/icons/ic_supervisor_account_black.svg"></md-icon>
                         <p>Free Users</p>
                     </md-list-item>
-                    <md-list-item class="list-item" ng-click="showMyUsers()" ng-class="selected === 'myUsers' ? 'active' : false">
+                    <md-list-item class="list-item advertiser-option" ng-click="showMyUsers()" ng-class="selected === 'myUsers' ? 'active' : false">
                         <md-icon md-svg-src="resources/img/icons/ic_supervisor_account_black.svg"></md-icon>
                         <p>My Users</p>
                     </md-list-item>
-                    <md-list-item class="list-item" ng-click="null" ng-class="selected === 'supervisorAccount' ? 'active' : false">
+                    <md-list-item class="list-item advertiser-option" ng-click="null" ng-class="selected === 'supervisorAccount' ? 'active' : false">
                         <md-icon md-svg-src="resources/img/icons/ic_supervisor_account_black.svg"></md-icon>
                         <p>Supervisor Account</p>
                     </md-list-item>
-                    <md-list-item class="list-item" ng-click="null" ng-class="selected === 'settings' ? 'active' : false">
+                    <md-list-item class="list-item advertiser-option" ng-click="null" ng-class="selected === 'settings' ? 'active' : false">
                         <md-icon md-svg-src="resources/img/icons/ic_settings_black.svg"></md-icon>
                         <p>Settings</p>
                     </md-list-item>
