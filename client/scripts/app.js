@@ -40,7 +40,7 @@
                 controllerAs: 'vm'
             })
 
-            .otherwise({redirectTo: '/login'});
+            .otherwise({redirectTo: '/'});
 
         $mdDateLocaleProvider.formatDate = function(date) {
             if (date){
